@@ -1,3 +1,20 @@
-* {
-    border: 5px dashed red;
+header {
+    background-color: #2286ae;
+    background-image: linear-gradient(315deg, #2234ae 0%, #191714 74%);
+    color: white;
+    
 }
+
+form {
+    padding-bottom: 5%;
+    margin-left: 5px;
+}
+
+#search-bar {
+    margin-bottom: 15px;
+}
+
+#recent-searches {
+    margin-left: 5px;
+}
+
