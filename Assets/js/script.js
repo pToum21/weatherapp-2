@@ -28,10 +28,10 @@ function currentWeather(city) {
             console.log(cityName);
             h3El.innerHTML = cityName + dayjs().format(' (M/D/YYYY)') + imageHTML;
             var windMPH = data.wind.speed;
-            windPEl.textContent = 'Wind: ' + Math.floor(windMPH);
+            windPEl.textContent = 'Wind: ' + Math.floor(windMPH) + ' MPH';
             console.log(data);
             var cityTemp = data.main.temp
-            tempPEl.textContent = 'Temp: ' + Math.floor(cityTemp);
+            tempPEl.textContent = 'Temp: ' + Math.floor(cityTemp) + '°F';
             var cityHumidity = data.main.humidity;
             humidityPEl.textContent = 'Humidity: ' + Math.floor(cityHumidity) + '%';
             var cityLat = data.coord.lat
@@ -51,13 +51,13 @@ function currentWeather(city) {
                         card1.innerHTML = dayjs(data.list[i + 1].dt_txt).format('(M/D/YYYY)') + imageHTML2;
                         fiveDayForecastEl.appendChild(card1);
                         var card2 = document.createElement('p')
-                        card2.textContent = 'Temp: ' + Math.floor(data.list[i].main.temp);
+                        card2.textContent = 'Temp: ' + Math.floor(data.list[i].main.temp) + '°F';
                         card1.appendChild(card2);
                         var card3 = document.createElement('p')
-                        card3.textContent = 'Wind: ' + Math.floor(data.list[i].wind.speed);
+                        card3.textContent = 'Wind: ' + Math.floor(data.list[i].wind.speed) + ' MPH';
                         card1.appendChild(card3);
                         var card4 = document.createElement('p')
-                        card4.textContent = 'Humidity: ' + Math.floor(data.list[i].main.humidity);
+                        card4.textContent = 'Humidity: ' + Math.floor(data.list[i].main.humidity) + '%';
                         card1.appendChild(card4);
 
 
