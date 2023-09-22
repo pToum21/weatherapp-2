@@ -12,7 +12,7 @@ var fiveDayForecastEl = document.querySelector('#five-cards');
 
 
 function currentWeather(city) {
-   
+
 
     var catURL = weatherApiUrl + city + `&appid=${weatherApiKey}&units=imperial`;
     fetch(catURL)
@@ -20,8 +20,10 @@ function currentWeather(city) {
             return response.json()
         })
         .then(function (data) {
-            var imageHTML = `<img src="${WeatherIcon}" alt="weather icon" width="500" height="600">`
             var WeatherIcon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+
+            var imageHTML = `<img src="${WeatherIcon}" alt="weather icon" width="40" height="46">`
+
             var cityName = data.name;
             console.log(cityName);
             h3El.innerHTML = cityName + dayjs().format(' (M/D/YYYY)') + imageHTML;
@@ -39,10 +41,14 @@ function currentWeather(city) {
                     return response.json()
                 })
                 .then(function (data) {
+                    fiveDayForecastEl.innerHTML = '';
                     for (var i = 0; i < data.list.length; i = i + 8) {
+                        var WeatherIcon2 = `https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`;
+
+                        var imageHTML2 = `<img src="${WeatherIcon2}" alt="weather icon" width="46" height="70">`
                         var card1 = document.createElement('h5')
                         card1.setAttribute('class', 'card col-2', 'style', 'width: 18rem')
-                        card1.textContent = dayjs(data.list[i + 1].dt_txt).format('(M/D/YYYY)')
+                        card1.innerHTML = dayjs(data.list[i + 1].dt_txt).format('(M/D/YYYY)') + imageHTML2;
                         fiveDayForecastEl.appendChild(card1);
                         var card2 = document.createElement('p')
                         card2.textContent = 'Temp: ' + Math.floor(data.list[i].main.temp);
