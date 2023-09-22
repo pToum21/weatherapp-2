@@ -16,3 +16,8 @@ form {
 #recent-searches {
     margin-left: 5px;
 }
+
+.card {
+    background-image: linear-gradient(325deg, #2253ae 74%, #191714 0%);
+    color: white;
+}
