@@ -12,17 +12,19 @@ var fiveDayForecastEl = document.querySelector('#five-cards');
 
 
 function currentWeather(city) {
-    
+   
+
     var catURL = weatherApiUrl + city + `&appid=${weatherApiKey}&units=imperial`;
     fetch(catURL)
         .then(function (response) {
             return response.json()
         })
         .then(function (data) {
-            var WeatherIcon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`
+            var imageHTML = `<img src="${WeatherIcon}" alt="weather icon" width="500" height="600">`
+            var WeatherIcon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
             var cityName = data.name;
             console.log(cityName);
-            h3El.textContent = cityName + dayjs().format(' (M/D/YYYY)') + WeatherIcon;
+            h3El.innerHTML = cityName + dayjs().format(' (M/D/YYYY)') + imageHTML;
             var windMPH = data.wind.speed;
             windPEl.textContent = 'Wind: ' + Math.floor(windMPH);
             console.log(data);
