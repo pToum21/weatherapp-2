@@ -65,13 +65,13 @@ function currentWeather(city) {
 
 function savedata() {
     localStorage.getItem(city)
-    for (i = 0; i < city.length; i++) {
-        var recentSearches = document.createElement('button')
-        
-        recentSearches.textContent = city;
-        saveListUl.appendChild(recentSearches);
 
-    }
+    var recentSearches = document.createElement('button')
+
+    recentSearches.textContent = city;
+    saveListUl.appendChild(recentSearches);
+
+
 }
 
 
@@ -80,7 +80,7 @@ searchBtn.addEventListener('click', function (event) {
     event.preventDefault();
     city = searchBar.value;
     currentWeather(city);
-    
+
     localStorage.setItem('city', city)
     savedata();
 });
