@@ -7,13 +7,12 @@ var windPEl = document.querySelector('#wind');
 var tempPEl = document.querySelector('#temp');
 var humidityPEl = document.querySelector('#humidity');
 var fiveDayForecastEl = document.querySelector('#five-cards');
+var saveListUl = document.querySelector('#save-btn-list')
 
 
 
 
 function currentWeather(city) {
-
-
     var catURL = weatherApiUrl + city + `&appid=${weatherApiKey}&units=imperial`;
     fetch(catURL)
         .then(function (response) {
@@ -21,9 +20,7 @@ function currentWeather(city) {
         })
         .then(function (data) {
             var WeatherIcon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
-
             var imageHTML = `<img src="${WeatherIcon}" alt="weather icon" width="40" height="46">`
-
             var cityName = data.name;
             console.log(cityName);
             h3El.innerHTML = cityName + dayjs().format(' (M/D/YYYY)') + imageHTML;
@@ -44,7 +41,6 @@ function currentWeather(city) {
                     fiveDayForecastEl.innerHTML = '';
                     for (var i = 0; i < data.list.length; i = i + 8) {
                         var WeatherIcon2 = `https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`;
-
                         var imageHTML2 = `<img src="${WeatherIcon2}" alt="weather icon" width="46" height="70">`
                         var card1 = document.createElement('h5')
                         card1.setAttribute('class', 'card col-2', 'style', 'width: 18rem')
@@ -59,9 +55,6 @@ function currentWeather(city) {
                         var card4 = document.createElement('p')
                         card4.textContent = 'Humidity: ' + Math.floor(data.list[i].main.humidity) + '%';
                         card1.appendChild(card4);
-
-
-
                         console.log(data.list[i])
                     }
                     console.log(data);
@@ -70,7 +63,16 @@ function currentWeather(city) {
 }
 
 
+function savedata() {
+    localStorage.getItem(city)
+    for (i = 0; i < city.length; i++) {
+        var recentSearches = document.createElement('button')
+        
+        recentSearches.textContent = city;
+        saveListUl.appendChild(recentSearches);
 
+    }
+}
 
 
 
@@ -78,56 +80,49 @@ searchBtn.addEventListener('click', function (event) {
     event.preventDefault();
     city = searchBar.value;
     currentWeather(city);
-
+    
+    localStorage.setItem('city', city)
+    savedata();
 });
 
 
 
-var ex1 = {
-    "dt": 1695427200,
-    "main": {
-        "temp": 67.01,
-        "feels_like": 66.51,
-        "temp_min": 63.45,
-        "temp_max": 67.01,
-        "pressure": 1022,
-        "sea_level": 1022,
-        "grnd_level": 1004,
-        "humidity": 66,
-        "temp_kf": 1.98
-    },
-    "weather": [
-        {
-            "id": 803,
-            "main": "Clouds",
-            "description": "broken clouds",
-            "icon": "04n"
-        }
-    ],
-    "clouds": {
-        "all": 83
-    },
-    "wind": {
-        "speed": 12.39,
-        "deg": 66,
-        "gust": 22.75
-    },
-    "visibility": 10000,
-    "pop": 0,
-    "sys": {
-        "pod": "n"
-    },
-    "dt_txt": "2023-09-23 00:00:00"
-}
-
-
-
-
-
-
-
-
-
+// var ex1 = {
+//     "dt": 1695427200,
+//     "main": {
+//         "temp": 67.01,
+//         "feels_like": 66.51,
+//         "temp_min": 63.45,
+//         "temp_max": 67.01,
+//         "pressure": 1022,
+//         "sea_level": 1022,
+//         "grnd_level": 1004,
+//         "humidity": 66,
+//         "temp_kf": 1.98
+//     },
+//     "weather": [
+//         {
+//             "id": 803,
+//             "main": "Clouds",
+//             "description": "broken clouds",
+//             "icon": "04n"
+//         }
+//     ],
+//     "clouds": {
+//         "all": 83
+//     },
+//     "wind": {
+//         "speed": 12.39,
+//         "deg": 66,
+//         "gust": 22.75
+//     },
+//     "visibility": 10000,
+//     "pop": 0,
+//     "sys": {
+//         "pod": "n"
+//     },
+//     "dt_txt": "2023-09-23 00:00:00"
+// }
 
 
 // var ex = {
