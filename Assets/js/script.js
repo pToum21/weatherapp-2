@@ -9,8 +9,7 @@ var humidityPEl = document.querySelector('#humidity');
 var fiveDayForecastEl = document.querySelector('#five-cards');
 var saveListUl = document.querySelector('#save-btn-list')
 
-
-
+savedata();
 
 function currentWeather(city) {
     var catURL = weatherApiUrl + city + `&appid=${weatherApiKey}&units=imperial`;
@@ -62,30 +61,43 @@ function currentWeather(city) {
         })
 }
 
-
 function savedata() {
-    localStorage.getItem(city)
+    saveListUl.innerHTML = ""
+    var cities = JSON.parse(localStorage.getItem('cities'))
 
-    var recentSearches = document.createElement('button')
+    if (cities) {
+        for (let i = 0; i < cities.length; i++) {
+            var recentSearches = document.createElement('button')
+            recentSearches.textContent = cities[i];
+            recentSearches.setAttribute('class', "btn btn-secondary")
+            saveListUl.appendChild(recentSearches);
+        }
+    }
 
-    recentSearches.textContent = city;
-    saveListUl.appendChild(recentSearches);
 
 
 }
-
-
 
 searchBtn.addEventListener('click', function (event) {
     event.preventDefault();
     city = searchBar.value;
     currentWeather(city);
+    var cities = JSON.parse(localStorage.getItem('cities'))
+    if (cities) {
+        cities.push(city)
+        localStorage.setItem('cities', JSON.stringify(cities))
+    } else {
+        cities = []
+        cities.push(city)
+        localStorage.setItem('cities', JSON.stringify(cities))
+    }
 
+
+
+    
     localStorage.setItem('city', city)
     savedata();
 });
-
-
 
 // var ex1 = {
 //     "dt": 1695427200,
@@ -123,7 +135,6 @@ searchBtn.addEventListener('click', function (event) {
 //     },
 //     "dt_txt": "2023-09-23 00:00:00"
 // }
-
 
 // var ex = {
 //     "coord": {
