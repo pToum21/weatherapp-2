@@ -62,26 +62,21 @@ function currentWeather(city) {
 }
 
 function savedata() {
-
-    saveListUl.innerHTML = ""
+    saveListUl.innerHTML = "";
     var cities = JSON.parse(localStorage.getItem('cities'))
-
     if (cities) {
         for (let i = 0; i < cities.length; i++) {
+            
             var recentSearches = document.createElement('button')
             recentSearches.textContent = cities[i];
-            recentSearches.setAttribute('class', "btn btn-secondary")  
-            recentSearches.addEventListener('click', function () {currentWeather(cities[i])});         
+            recentSearches.setAttribute('class', "btn btn-secondary col-12 m-1")
+            recentSearches.addEventListener('click', function () { currentWeather(cities[i]) });
             saveListUl.appendChild(recentSearches);
-            
+
         }
     }
 
 }
-
-
-
-
 
 searchBtn.addEventListener('click', function (event) {
     event.preventDefault();
@@ -89,17 +84,19 @@ searchBtn.addEventListener('click', function (event) {
     currentWeather(city);
     var cities = JSON.parse(localStorage.getItem('cities'))
     if (cities) {
-        cities.push(city)
-        localStorage.setItem('cities', JSON.stringify(cities))
+        if (!cities.includes(city)) {
+            cities.push(city)
+            localStorage.setItem('cities', JSON.stringify(cities))    
+        }
+        
     } else {
+        if (city === "") {
+            return
+        }
         cities = []
         cities.push(city)
         localStorage.setItem('cities', JSON.stringify(cities))
     }
-
-
-
-
     localStorage.setItem('city', city)
     savedata();
 });
