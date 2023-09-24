@@ -21,7 +21,7 @@ function currentWeather(city) {
             var WeatherIcon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
             var imageHTML = `<img src="${WeatherIcon}" alt="weather icon" width="40" height="46">`
             var cityName = data.name;
-            
+
             h3El.innerHTML = cityName + dayjs().format(' (M/D/YYYY)') + imageHTML;
             var windMPH = data.wind.speed;
             windPEl.textContent = 'Wind: ' + Math.floor(windMPH) + ' MPH';
@@ -63,15 +63,19 @@ function currentWeather(city) {
 
 function savedata() {
     saveListUl.innerHTML = "";
-    
+
     var cities = JSON.parse(localStorage.getItem('cities'))
-    
+
     if (cities) {
         for (let i = 0; i < cities.length; i++) {
 
             var recentSearches = document.createElement('button')
-            recentSearches.textContent = cities[i].charAt(0).toUpperCase() + cities[i].slice(1)
-            
+            var cityCharacters = cities[i].split(' ');
+            for (let j = 0; j < cityCharacters.length; j++) {
+                cityCharacters[j] = cityCharacters[j].charAt(0).toUpperCase() + cityCharacters[j].slice(1);
+            }
+            recentSearches.textContent = cityCharacters.join(' ')
+
             recentSearches.setAttribute('class', "btn btn-secondary col-12 m-1")
             recentSearches.addEventListener('click', function () { currentWeather(cities[i]) });
             saveListUl.appendChild(recentSearches);
@@ -83,12 +87,12 @@ function savedata() {
 
 searchBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    
+
     city = searchBar.value;
-    
-    
+
+
     currentWeather(city);
-    
+
     var cities = JSON.parse(localStorage.getItem("cities")) || [];
     if (city === "") {
         return;
