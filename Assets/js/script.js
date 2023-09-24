@@ -62,6 +62,7 @@ function currentWeather(city) {
 }
 
 function savedata() {
+
     saveListUl.innerHTML = ""
     var cities = JSON.parse(localStorage.getItem('cities'))
 
@@ -69,14 +70,18 @@ function savedata() {
         for (let i = 0; i < cities.length; i++) {
             var recentSearches = document.createElement('button')
             recentSearches.textContent = cities[i];
-            recentSearches.setAttribute('class', "btn btn-secondary")
+            recentSearches.setAttribute('class', "btn btn-secondary")  
+            recentSearches.addEventListener('click', function () {currentWeather(cities[i])});         
             saveListUl.appendChild(recentSearches);
+            
         }
     }
 
-
-
 }
+
+
+
+
 
 searchBtn.addEventListener('click', function (event) {
     event.preventDefault();
@@ -94,7 +99,7 @@ searchBtn.addEventListener('click', function (event) {
 
 
 
-    
+
     localStorage.setItem('city', city)
     savedata();
 });
