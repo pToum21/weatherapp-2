@@ -1,3 +1,4 @@
+// all variables that are within the global scope
 var weatherApiKey = '249506049aa732c8bd69f2c5fc992d9f';
 var weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
 var searchBtn = document.querySelector('#search-button');
@@ -9,8 +10,10 @@ var humidityPEl = document.querySelector('#humidity');
 var fiveDayForecastEl = document.querySelector('#five-cards');
 var saveListUl = document.querySelector('#save-btn-list')
 
+// calls the savedata function on page load
 savedata();
 
+// this function get the cities current weather conditions based on the current day using dayJs
 function currentWeather(city) {
     var catURL = weatherApiUrl + city + `&appid=${weatherApiKey}&units=imperial`;
     fetch(catURL)
@@ -36,6 +39,7 @@ function currentWeather(city) {
                 .then(function (response) {
                     return response.json()
                 })
+                // this .then is used to get the five day forecast for the searched city
                 .then(function (data) {
                     fiveDayForecastEl.innerHTML = '';
                     for (var i = 0; i < data.list.length; i = i + 8) {
@@ -61,6 +65,7 @@ function currentWeather(city) {
         })
 }
 
+// save data takes the user entered city and saves it to local storage which is then used to display in recent searches
 function savedata() {
     saveListUl.innerHTML = "";
 
@@ -85,6 +90,7 @@ function savedata() {
 
 }
 
+// search button event listener actually allows the user to enter a city name and click search to see the current weather and the five day forecast
 searchBtn.addEventListener("click", function (event) {
     event.preventDefault();
     city = searchBar.value;
@@ -102,6 +108,8 @@ searchBtn.addEventListener("click", function (event) {
     savedata();
 });
 
+
+// objects grabbed from the weather api
 // var ex1 = {
 //     "dt": 1695427200,
 //     "main": {
