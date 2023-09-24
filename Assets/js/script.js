@@ -70,7 +70,7 @@ function savedata() {
         for (let i = 0; i < cities.length; i++) {
 
             var recentSearches = document.createElement('button')
-            recentSearches.textContent = cities[i].split([0]).join('').toUpperCase([0]);
+            recentSearches.textContent = cities[i].charAt(0).toUpperCase() + cities[i].slice(1)
             
             recentSearches.setAttribute('class', "btn btn-secondary col-12 m-1")
             recentSearches.addEventListener('click', function () { currentWeather(cities[i]) });
