@@ -87,12 +87,9 @@ function savedata() {
 
 searchBtn.addEventListener("click", function (event) {
     event.preventDefault();
-
     city = searchBar.value;
-
-
+    city = city.toLowerCase();
     currentWeather(city);
-
     var cities = JSON.parse(localStorage.getItem("cities")) || [];
     if (city === "") {
         return;
