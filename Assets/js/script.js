@@ -66,7 +66,7 @@ function savedata() {
     var cities = JSON.parse(localStorage.getItem('cities'))
     if (cities) {
         for (let i = 0; i < cities.length; i++) {
-            
+
             var recentSearches = document.createElement('button')
             recentSearches.textContent = cities[i];
             recentSearches.setAttribute('class', "btn btn-secondary col-12 m-1")
@@ -78,26 +78,25 @@ function savedata() {
 
 }
 
-searchBtn.addEventListener('click', function (event) {
+searchBtn.addEventListener("click", function (event) {
     event.preventDefault();
     city = searchBar.value;
     currentWeather(city);
-    var cities = JSON.parse(localStorage.getItem('cities'))
-    if (cities) {
+    
+    var cities = JSON.parse(localStorage.getItem("cities")) || [];
+    if (city === "") {
+        return;
+    } else
         if (!cities.includes(city)) {
-            cities.push(city)
-            localStorage.setItem('cities', JSON.stringify(cities))    
+            cities.push(city);
+            localStorage.setItem("cities", JSON.stringify(cities));
+        } else {
+            cities = [];
+            cities.push(city);           
+            localStorage.setItem("cities", JSON.stringify(cities));
+            
         }
-        
-    } else {
-        if (city === "") {
-            return
-        }
-        cities = []
-        cities.push(city)
-        localStorage.setItem('cities', JSON.stringify(cities))
-    }
-    localStorage.setItem('city', city)
+    localStorage.setItem("city", city);
     savedata();
 });
 
