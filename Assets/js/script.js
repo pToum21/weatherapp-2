@@ -50,13 +50,17 @@ function currentWeather(city) {
                         card1.innerHTML = dayjs(data.list[i + 1].dt_txt).format('(M/D/YYYY)') + imageHTML2;
                         fiveDayForecastEl.appendChild(card1);
                         var card2 = document.createElement('p')
+                        card2.classList.add("card-text")
                         card2.textContent = 'Temp: ' + Math.floor(data.list[i].main.temp) + '°F';
                         card1.appendChild(card2);
                         var card3 = document.createElement('p')
+                        card3.classList.add("card-text")
                         card3.textContent = 'Wind: ' + Math.floor(data.list[i].wind.speed) + ' MPH';
                         card1.appendChild(card3);
                         var card4 = document.createElement('p')
+                        card3.classList.add("card-text")
                         card4.textContent = 'Humidity: ' + Math.floor(data.list[i].main.humidity) + '%';
+                        card4.classList.add("card-text")
                         card1.appendChild(card4);
                         console.log(data.list[i])
                     }

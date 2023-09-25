@@ -1,24 +1,51 @@
+
+#bak-ground {
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,0.9430147058823529) 14%, rgba(148,216,233,1) 60%);
+
+}
 header {
-    background-image: linear-gradient(325deg, #2253ae 74%, #191714 0%);
+    background-image: linear-gradient(325deg, #6abace 74%, #d9a5ee 0%);
     color: white;
     margin-bottom: 20px;
+}
+#city-title {
+    color: white;
+}
+h2 {
+    color: white;
 }
 
 form {
     padding-bottom: 5%;
     margin-left: 5px;
 }
+#temp, #wind, #humidity {
+    font-size: 20px;
+    font-weight: lighter;
+    color: white;
+
+}
 
 #search-bar {
     margin-bottom: 15px;
+}
+#search-button {
+    background-color: #e1bce6;
 }
 
 #recent-searches {
     margin-left: 5px;
 }
+.btn-secondary {
+    background-color: #e1bce6;
+}
+h4 {
+    color: white;
+}
 
 .card {
-    background-image: linear-gradient(325deg, #2253ae 74%, #191714 0%);
+    background-image: linear-gradient(325deg, #6eb5d1 74%, #e1bce6 0%);
     color: white;
 }
 
@@ -36,4 +63,13 @@ h5 {
 
 #recent-searches {
     padding: 5px;
+}
+
+p {
+    font-weight: lighter;
+}
+
+.card-text{
+    font-size: 20px;
+    font-weight: lighter;
 }
