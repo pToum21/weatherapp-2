@@ -8,7 +8,9 @@ header {
     background-image: linear-gradient(325deg, #6abace 74%, #d9a5ee 0%);
     color: white;
     margin-bottom: 20px;
+    height: 60px;
 }
+
 #city-title {
     color: white;
 }
@@ -73,3 +75,20 @@ p {
     font-size: 20px;
     font-weight: lighter;
 }
+
+@media only screen 
+    and (device-width : 414px) 
+    and (device-height : 896px) 
+    and (-webkit-device-pixel-ratio : 2) { 
+        #five-cards {
+            display: flex;
+            
+            flex-direction: column;
+            justify-content: space-evenly;
+            
+        }
+       h5 {
+        text-align: start;
+       }
+    }
+
